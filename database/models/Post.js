@@ -7,7 +7,12 @@ Post.init(
   {
     Titulo: DataTypes.STRING,
     Contenido: DataTypes.STRING,
-    Imagen: DataTypes.STRING,
+    Imagen: {
+      type: DataTypes.STRING,
+      validate: {
+        is: /[.]png$|[.]jpg$/gs
+      }
+    },
     Categoria: DataTypes.STRING,
     FechaDeCreacion: DataTypes.DATE,
   },

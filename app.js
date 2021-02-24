@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
 app.get("/posts", (req, res) => {
   Post.findAll().then(function (post) {
     res.json(post);
+  }).catch((error)=>{
+    res.send(error.message)
   });
 });
 
@@ -24,6 +26,8 @@ app.get("/posts/:id", (req, res) => {
   const id = req.params.id;
   Post.findByPk(id).then(function (post) {
     res.json(post);
+  }).catch((error)=>{
+    res.send(error.message)
   });
 });
 
@@ -37,6 +41,8 @@ app.post("/posts", (req, res) => {
   });
   post.save().then(function (datos) {
     return res.send(datos);
+  }).catch((error)=>{
+    res.send(error.message)
   });
 });
 
@@ -47,7 +53,7 @@ app.patch("/posts/:id", async (req, res) => {
       res.json(`${data} fila con id: ${id} se ha actualizado`);
     })
     .catch((error) => {
-      console.error(error);
+      console.error(error.message);
     });
 });
 
@@ -59,7 +65,7 @@ app.delete("/posts/:id", async (req, res) => {
       
     })
     .catch((error) => {
-      console.error(error);
+      console.error(error.message);
     });
 });
 
@@ -71,6 +77,6 @@ app.listen(PORT, async () => {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
   } catch (error) {
-    console.error("Unable to connect to the database:", error);
+    console.error("Unable to connect to the database:", error.message);
   }
 });
