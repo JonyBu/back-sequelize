@@ -10,13 +10,12 @@ Post.init(
     Imagen: {
       type: DataTypes.STRING,
       validate: {
-        is: /[.]png$|[.]jpg$/gs
-      }
+        is: /[.]png$|[.]jpg$/gs,
+      },
     },
-    Categoria: DataTypes.STRING,
-    FechaDeCreacion: DataTypes.DATE,
+    FechaDeCreacion: DataTypes.DATE
   },
-  { sequelize, modelName: "post" }
+  { sequelize, modelName: "post" ,timestamps: false  }
 );
 
 module.exports = Post;
